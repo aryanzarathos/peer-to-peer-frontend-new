@@ -68,8 +68,8 @@ export default function Room() {
   useEffect(() => {
     // Initialize WebSocket connection
     // console.log(`ws://localhost:8080/${params.roomid}`, "line 41")
-    const ws = new WebSocket(`ws://localhost:8080/${params.roomid}`)
-    // const ws = new WebSocket(`wss://peer-to-peer-backend-8tcu.onrender.com/${params.roomid}`); // Replace with your WebSocket server URL
+    // const ws = new WebSocket(`ws://localhost:8080/${params.roomid}`)
+    const ws = new WebSocket(`wss://peer-to-peer-backend-8tcu.onrender.com/${params.roomid}`); // Replace with your WebSocket server URL
 
     ws.onopen = () => {
       console.log('Connected to WebSocket server');
