@@ -68,20 +68,22 @@ export default function Room() {
   useEffect(() => {
     // Initialize WebSocket connection
     // console.log(`ws://localhost:8080/${params.roomid}`, "line 41")
-    const ws = new WebSocket(`wss://peer-to-peer-backend-8tcu.onrender.com/${params.roomid}`); // Replace with your WebSocket server URL
+    const ws = new WebSocket(`ws://localhost:8080/${params.roomid}`)
+    // const ws = new WebSocket(`wss://peer-to-peer-backend-8tcu.onrender.com/${params.roomid}`); // Replace with your WebSocket server URL
 
     ws.onopen = () => {
       console.log('Connected to WebSocket server');
     };
 
     ws.onmessage = (event) => {
-      const message = JSON.parse(event.data);
-      if (message.type === 'signal') {
-        peer.signal(message.data); // Ensure the peer is handling incoming signals
-      } else if (message.type === 'welcome') {
-        setSocket(ws);
-        console.log('Welcome message:', message);
-      }
+      setMessages((prevMessages) => [...prevMessages, event.data]);
+      // setMessage('');
+      // if (message.type === 'signal') {
+      //   peer.signal(message.data); // Ensure the peer is handling incoming signals
+      // } else if (message.type === 'welcome') {
+      //   setSocket(ws);
+      //   console.log('Welcome message:', message);
+      // }
     };
 
     ws.onclose = () => {
@@ -105,7 +107,7 @@ export default function Room() {
     if (socket && input) {
       socket.send(input);
       setInput('');
-    }
+  }
   };
   return (
     <div className={styles.page}>
