@@ -67,8 +67,8 @@ export default function Room() {
 
   useEffect(() => {
     // Initialize WebSocket connection
-    console.log(`ws://localhost:8080/${params.roomid}`, "line 41")
-    const ws = new WebSocket(`ws://localhost:8080/${params.roomid}`); // Replace with your WebSocket server URL
+    // console.log(`ws://localhost:8080/${params.roomid}`, "line 41")
+    const ws = new WebSocket(`wss://peer-to-peer-backend-8tcu.onrender.com/${params.roomid}`); // Replace with your WebSocket server URL
 
     ws.onopen = () => {
       console.log('Connected to WebSocket server');
@@ -110,11 +110,11 @@ export default function Room() {
   return (
     <div className={styles.page}>
       <h2>Peer-to-Peer Room</h2>
-      <button onClick={initiateConnection}>Connect to Peer</button>
+      {/* <button onClick={initiateConnection}>Connect to Peer</button>
       {isConnected && <p>Connected to peer!</p>}
       <input type="file" onChange={handleFileSelect} />
       <button onClick={sendFile} disabled={!file}>Send File</button>
-      {chunks.length > 0 && <button onClick={saveReceivedFile}>Save Received File</button>}
+      {chunks.length > 0 && <button onClick={saveReceivedFile}>Save Received File</button>} */}
 
       <div>
         <h3>Messages:</h3>
